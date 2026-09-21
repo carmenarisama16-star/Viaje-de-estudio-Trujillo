@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta Moche & Chimú - Viaje de Estudios a Trujillo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        moche: {
+                            terracota: '#B23B23',
+                            ocre: '#D97724',
+                            dorado: '#E5A93C',
+                            adobe: '#C28D5E',
+                            crema: '#FAF5EF',
+                            oscuro: '#2A1810'
+                        },
+                        chimu: {
+                            azul: '#1E4C60',
+                            arena: '#E8D2B8',
+                            oro: '#F2C12E'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pattern decorative backgrounds based on Chimu & Moche motifs */
+        .moche-pattern {
+            background-color: #FAF5EF;
+            background-image: radial-gradient(#B23B23 0.75px, transparent 0.75px), radial-gradient(#B23B23 0.75px, #FAF5EF 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        .border-chanchan {
+            background: repeating-linear-gradient(
+                90deg,
+                #D97724,
+                #D97724 15px,
+                #C28D5E 15px,
+                #C28D5E 30px
+            );
+            height: 6px;
+        }
+
+        /* Glassmorphic effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2A1810;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D97724;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E5A93C;
+        }
+    </style>
+</head>
+<body class="bg-moche-crema text-moche-oscuro font-sans antialiased overflow-x-hidden">
+
+    <!-- Cenefa Superior Decorativa -->
+    <div class="border-chanchan"></div>
+
+    <!-- Navegación Sticky -->
+    <nav class="sticky top-0 z-40 bg-moche-oscuro/95 text-white backdrop-blur-md border-b border-moche-dorado/20 shadow-lg transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-moche-dorado flex items-center justify-center text-moche-oscuro text-xl font-bold font-cinzel group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid me-0.5 fa-sun"></i>
+                    </div>
+                    <div>
+                        <span class="font-cinzel text-xl font-extrabold tracking-wider text-moche-dorado block leading-none">TRUJILLO</span>
+                        <span class="text-xs text-moche-crema/70 tracking-widest uppercase">Ruta Arqueológica</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#inicio" class="hover:text-moche-dorado transition-colors py-1">Inicio</a>
+                    <a href="#sobre-viaje" class="hover:text-moche-dorado transition-colors py-1">El Viaje</a>
+                    <a href="#destinos" class="hover:text-moche-dorado transition-colors py-1">Lugares Visitados</a>
+                    <a href="#guia" class="hover:text-moche-dorado transition-colors py-1">Guía del Viajero</a>
+                    <a href="#testimonios" class="hover:text-moche-dorado transition-colors py-1">Experiencia</a>
+                    <a href="#destinos" class="bg-moche-terracota hover:bg-moche-ocre text-white px-5 py-2.5 rounded-full font-semibold transition-all shadow-md hover:shadow-moche-terracota/30 hover:-translate-y-0.5">
+                        <i class="fa-solid fa-compass mr-2"></i>Explorar
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-moche-dorado focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-moche-oscuro border-b border-moche-dorado/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block py-2 text-white hover:text-moche-dorado">Inicio</a>
+            <a href="#sobre-viaje" class="block py-2 text-white hover:text-moche-dorado">El Viaje</a>
+            <a href="#destinos" class="block py-2 text-white hover:text-moche-dorado">Lugares Visitados</a>
+            <a href="#guia" class="block py-2 text-white hover:text-moche-dorado">Guía del Viajero</a>
+            <a href="#testimonios" class="block py-2 text-white hover:text-moche-dorado">Experiencia</a>
+        </div>
+    </nav>
+
+
+<!-- Sección Inicio con imagen de fondo -->
+<section id="inicio" class="relative bg-moche-oscuro text-white min-h-[85vh] flex items-center overflow-hidden">
+    <!-- Imagen de fondo con capa oscura para legibilidad -->
+    <div class="absolute inset-0 z-0">
+        <img src="trujillo/2.jpeg" alt="Cerro de Trujillo" class="w-full h-full object-cover object-center opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-moche-oscuro via-transparent to-moche-oscuro/50"></div>
+    </div>
+
+    <!-- Contenido principal sobre el fondo -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <!-- Mantener aquí el contenido textual de tu portada -->
+    </div>
+    <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0 opacity-40 mix-blend-luminosity bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1589802829985-817e51171b92?auto=format&fit=crop&q=80&w=1920');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-moche-oscuro via-moche-oscuro/60 to-transparent z-10"></div>
+
+        <div class="relative z-20 max-w-5xl mx-auto px-4 text-center text-white">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-moche-terracota/80 backdrop-blur-md border border-moche-dorado/40 text-moche-dorado text-sm font-semibold mb-6 animate-pulse">
+                <i class="fa-solid fa-landmark"></i> Viaje de Estudios Académico
+            </div>
+            
+            <h1 class="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-moche-dorado via-moche-crema to-chimu-arena tracking-tight mb-6 leading-tight">
+                Ruta Moche & Chimú:<br/><span class="text-3xl sm:text-5xl lg:text-6xl text-white font-normal">Trujillo Eterno</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-moche-crema/90 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                Descubre nuestra travesía de estudios por la Capital de la Primavera. Un recorrido milenario desde los frisos sagrados de la Huaca de la Luna hasta la magnificencia de barro en Chan Chan y el encanto marino de Huanchaco.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#destinos" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-moche-terracota to-moche-ocre text-white font-bold text-lg hover:shadow-lg hover:shadow-moche-terracota/50 transform hover:-translate-y-1 transition-all">
+                    <i class="fa-solid fa-map-location-dot mr-2"></i> Ver Lugares Visitados
+                </a>
+                <a href="#sobre-viaje" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 backdrop-blur-md text-moche-crema border border-white/20 font-semibold text-lg hover:bg-white/20 transition-all">
+                    <i class="fa-solid fa-book-open mr-2"></i> Leer Resumen del Viaje
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-white/10 max-w-4xl mx-auto">
+                <div>
+                    <span class="block font-cinzel text-3xl font-bold text-moche-dorado">2</span>
+                    <span class="text-xs uppercase tracking-wider text-moche-crema/70">Grandes Civilizaciones</span>
+                </div>
+                <div>
+                    <span class="block font-cinzel text-3xl font-bold text-moche-dorado">5</span>
+                    <span class="text-xs uppercase tracking-wider text-moche-crema/70">Puntos Clave Visitados</span>
+                </div>
+                <div>
+                    <span class="block font-cinzel text-3xl font-bold text-moche-dorado">+2,000</span>
+                    <span class="text-xs uppercase tracking-wider text-moche-crema/70">Años de Historia</span>
+                </div>
+                <div>
+                    <span class="block font-cinzel text-3xl font-bold text-moche-dorado">100%</span>
+                    <span class="text-xs uppercase tracking-wider text-moche-crema/70">Aprendizaje Cultural</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Sección Galería Multimedia Final -->
+    <section id="galeria-multimedia" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Encabezado de la Sección -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-moche-terracota font-bold uppercase tracking-widest text-sm">Recuerdos del Viaje</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-extrabold text-moche-oscuro mt-2">Galería Multimedia</h2>
+                <p class="text-gray-600 mt-4">Revive los mejores momentos de nuestra experiencia a través de imágenes y video.</p>
+            </div>
+
+            <!-- Red de 5 Fotografías -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <!-- Foto 1 (Destacada más grande) -->
+                <div class="lg:col-span-2 group relative overflow-hidden rounded-2xl shadow-lg h-72 sm:h-80 border-2 border-moche-adobe/20">
+                    <img src="trujillo/1.jpeg" alt="Foto del viaje 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">1ra parada</span>
+                    </div>
+                </div>
+
+                <!-- Foto 2 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-72 sm:h-80 border-2 border-moche-adobe/20">
+                    <img src="trujillo/3.jpeg" alt="Foto del viaje 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Ruta</span>
+                    </div>
+                </div>
+
+                <!-- Foto 3 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-72 sm:h-80 border-2 border-moche-adobe/20">
+                    <img src="trujillo/23.jpeg" alt="Foto del viaje 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg"> representaciones</span>
+                    </div>
+                </div>
+
+                <!-- Foto 4 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-72 sm:h-80 border-2 border-moche-adobe/20">
+                    <img src="trujillo/22.jpeg" alt="Foto del viaje 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Antes de entrar al museo</span>
+                    </div>
+                </div>
+
+                <!-- Foto 5 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-72 sm:h-80 border-2 border-moche-adobe/20">
+                    <img src="trujillo/21.jpeg" alt="Foto del viaje 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Laberinto</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reproductor de Video -->
+            <div class="max-w-4xl mx-auto bg-moche-crema p-4 sm:p-6 rounded-3xl shadow-xl border-2 border-moche-dorado/40">
+                <h3 class="font-cinzel text-xl sm:text-2xl font-bold text-moche-oscuro text-center mb-4">
+                    <i class="fa-solid fa-circle-play text-moche-terracota mr-2"></i> Palacio de Nican 
+                </h3>
+                
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-inner bg-black">
+                    <!-- Opción A: Archivo de video local de tu carpeta -->
+                    <video controls class="w-full h-full object-cover">
+                        <source src="trujillo/20.mp4" type="video/mp4">
+                        Tu navegador no soporta el reproductor de video.
+                    </video>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre el Viaje Section -->
+    <section id="sobre-viaje" class="py-20 relative moche-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-moche-dorado/20 rounded-full blur-xl"></div>
+                    <div class="relative bg-white p-3 rounded-2xl shadow-2xl border border-moche-adobe/20 rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <img src="trujillo/8.jpeg" class="rounded-xl w-full h-[400px] object-cover">
+                        <div class="absolute bottom-6 left-6 right-6 bg-moche-oscuro/85 backdrop-blur-md p-4 rounded-xl text-white border border-moche-dorado/30">
+                            <p class="font-cinzel text-sm text-moche-dorado font-bold">Investigación Académica</p>
+                            <p class="text-xs text-moche-crema/80">Comprendiendo la visión cosmogónica de los Moche y el desarrollo urbano Chimú.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="inline-block px-3 py-1 rounded-md bg-moche-terracota/10 text-moche-terracota font-bold text-sm tracking-wider uppercase mb-3">
+                        Bitácora Académica
+                    </div>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-moche-oscuro mb-6 leading-tight">
+                        Un Reencuentro Fascinante con las Raíces del Norte Peruano
+                    </h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Nuestro viaje de estudios a Trujillo tuvo como objetivo principal analizar el esplendor socio-político, ritual y arquitectónico de dos de las sociedades prehispánicas más sofisticadas de América del Sur: los <strong>Moche (100 - 800 d.C.)</strong> y los <strong>Chimú (1000 - 1470 d.C.)</strong>.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        A través de esta experiencia directa, complementamos los aprendizajes de aula con observaciones de campo: admiramos la maestría de los frisos policromados, la escala urbanística de las ciudadelas de barro y cómo la tradición milenaria se mantiene viva en las costas de Huanchaco.
+                    </p>
+
+                    <!-- Key highlights bullet points -->
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-moche-dorado text-moche-oscuro flex items-center justify-center text-xs font-bold mt-1">✓</div>
+                            <p class="text-sm text-gray-800"><strong>Análisis Arqueológico:</strong> Contraste directo entre estado de conservación y procesos de excavación actual.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-moche-dorado text-moche-oscuro flex items-center justify-center text-xs font-bold mt-1">✓</div>
+                            <p class="text-sm text-gray-800"><strong>Patrimonio Vivo:</strong> Continuidad de la navegación costera prehispánica hasta nuestros días.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-moche-dorado text-moche-oscuro flex items-center justify-center text-xs font-bold mt-1">✓</div>
+                            <p class="text-sm text-gray-800"><strong>Integración Moderna:</strong> Visión urbana actual en el Trujillo contemporáneo.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lugares Visitados Section -->
+    <section id="destinos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-moche-terracota font-semibold tracking-wider text-sm uppercase">Itinerario de Campo</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-extrabold text-moche-oscuro mt-2 mb-4">Nuestra Ruta de Exploración</h2>
+                <p class="text-gray-600">Filtra y selecciona cada punto de nuestro recorrido para conocer los detalles, descubrimientos y experiencias viviendas durante la expedición.</p>
+            </div>
+
+            <!-- Interactive Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button onclick="filterPlaces('todos')" class="filter-btn active px-5 py-2 rounded-full font-medium text-sm transition-all border border-moche-adobe bg-moche-oscuro text-white" data-category="todos">
+                    Todos los Sitios
+                </button>
+                <button onclick="filterPlaces('arqueologia')" class="filter-btn px-5 py-2 rounded-full font-medium text-sm transition-all border border-moche-adobe bg-moche-crema text-moche-oscuro hover:bg-moche-adobe/20" data-category="arqueologia">
+                    <i class="fa-solid fa-pyramid mr-1"></i> Arqueología
+                </button>
+                <button onclick="filterPlaces('cultura')" class="filter-btn px-5 py-2 rounded-full font-medium text-sm transition-all border border-moche-adobe bg-moche-crema text-moche-oscuro hover:bg-moche-adobe/20" data-category="cultura">
+                    <i class="fa-solid fa-building-columns mr-1"></i> Museos
+                </button>
+                <button onclick="filterPlaces('costa')" class="filter-btn px-5 py-2 rounded-full font-medium text-sm transition-all border border-moche-adobe bg-moche-crema text-moche-oscuro hover:bg-moche-adobe/20" data-category="costa">
+                    <i class="fa-solid fa-water mr-1"></i> Tradición & Mar
+                </button>
+                <button onclick="filterPlaces('moderno')" class="filter-btn px-5 py-2 rounded-full font-medium text-sm transition-all border border-moche-adobe bg-moche-crema text-moche-oscuro hover:bg-moche-adobe/20" data-category="moderno">
+                    <i class="fa-solid fa-bag-shopping mr-1"></i> Ciudad Moderna
+                </button>
+            </div>
+
+            <!-- Places Cards Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="places-grid">
+
+                <!-- Place 1: Huacas del Sol y la Luna (DESTACADO ESPECIAL) -->
+                <div class="place-card arqueologia bg-moche-crema rounded-2xl overflow-hidden shadow-lg border border-moche-adobe/30 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="trujillo/8.jpeg" alt="Huaca de la Luna" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-moche-terracota text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                            Arqueología Moche
+                        </div>
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-moche-oscuro to-transparent p-4">
+                            <h3 class="font-cinzel text-xl font-bold text-white">Huacas del Sol y de la Luna</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <!-- Nota Importante sobre la Huaca del Sol -->
+                            <div class="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg mb-4 text-xs text-amber-900">
+                                <span class="font-bold block"><i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i> Observación de campo:</span>
+                                No pudimos observar de cerca la <strong>Huaca del Sol</strong> debido a que los arqueólogos continúan con los delicados trabajos de excavación y conservación.
+                            </div>
+                            <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                ¡Sin embargo, exploramos a fondo la majestuosa <strong>Huaca de la Luna</strong>! Admiramos los frisos policromados con relieve del dios <em>Ai Apaec</em> (El Decapitador) que han conservado su deslumbrante color original.
+                            </p>
+                        </div>
+                                           </div>
+                </div>
+
+                <!-- Place 2: Museo Huacas de Moche -->
+                <div class="place-card cultura bg-moche-crema rounded-2xl overflow-hidden shadow-lg border border-moche-adobe/30 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="trujillo/10.jpeg" alt="Museo Huacas de Moche" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-moche-ocre text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                            Exposición Cultural
+                        </div>
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-moche-oscuro to-transparent p-4">
+                            <h3 class="font-cinzel text-xl font-bold text-white">Museo Huacas de Moche</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                Un moderno recinto donde contemplamos piezas cerámicas incomparables, vasijas retratos, orfebrería ritual y utensilios que plasman la vida cotidiana, sacrificios e ideología ritual de la civilización Moche y vestigios Chimú.
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Place 3: Ciudadela de Chan Chan -->
+                <div class="place-card arqueologia bg-moche-crema rounded-2xl overflow-hidden shadow-lg border border-moche-adobe/30 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="trujillo/12.jpeg" alt="Chan Chan" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-chimu-oro text-moche-oscuro text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                            Patrimonio de la Humanidad
+                        </div>
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-moche-oscuro to-transparent p-4">
+                            <h3 class="font-cinzel text-xl font-bold text-white">Ciudadela de Chan Chan</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                Recorrimos los intrincados laberintos y palacios de adobe de la ciudad de barro más grande de América Precolombina. Quedamos maravillados por sus muros grabados con motivos marinos, peces, ardillas y redes de pesca.
+                            </p>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!-- Place 4: Balneario y Playa Huanchaco -->
+                <div class="place-card costa bg-moche-crema rounded-2xl overflow-hidden shadow-lg border border-moche-adobe/30 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="trujillo/15.jpeg" alt="Huanchaco" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-chimu-azul text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                            Tradición Milenaria
+                        </div>
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-moche-oscuro to-transparent p-4">
+                            <h3 class="font-cinzel text-xl font-bold text-white">Playa de Huanchaco</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                Vivimos la belleza de la costa liberteña con sus míticos <strong>Caballitos de Totora</strong>, embarcaciones ancestrales usadas desde tiempos Moche. Además disfrutamos del inolvidable atardecer y de la gastronomía marina.
+                            </p>
+                        </div>
+                                           </div>
+                </div>
+
+                <!-- Place 5: Mall Aventura Trujillo (MOL) -->
+                <div class="place-card moderno bg-moche-crema rounded-2xl overflow-hidden shadow-lg border border-moche-adobe/30 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="trujillo/16.jpeg" alt="Mall Aventura Trujillo" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                            Trujillo Contemporáneo
+                        </div>
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-moche-oscuro to-transparent p-4">
+                            <h3 class="font-cinzel text-xl font-bold text-white">Mall Aventura Trujillo (MOL)</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                Un espacio para observar la dinámica comercial moderna de Trujillo. Disfrutamos de tiempo libre de esparcimiento, cena en grupo y compras de recuerdos locales dentro del centro comercial más grande de la región.
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Guía del Visitante y Consejos -->
+    <section id="guia" class="py-20 bg-moche-oscuro text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-moche-dorado font-bold uppercase tracking-widest text-sm">¿Planeas Visitar Trujillo?</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-extrabold text-moche-crema mt-2">Guía del Viajero Cultural</h2>
+                <p class="text-moche-crema/80 mt-4">Todo lo que necesitas saber para vivir una experiencia tan enriquecedora como nuestro viaje de estudios.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tip 1 -->
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-moche-dorado/20 hover:border-moche-dorado/50 transition-all">
+                    <div class="w-14 h-14 rounded-2xl bg-moche-terracota/30 text-moche-dorado flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-moche-dorado mb-3">Clima y Vestimenta</h3>
+                    <p class="text-sm text-moche-crema/80 leading-relaxed">
+                        Conocida como la "Ciudad de la Eterna Primavera", el clima suele ser templado. Lleva ropa ligera, sombrero de ala ancha, bloqueador solar y lentes para el sol, especialmente para recorrer Chan Chan.
+                    </p>
+                </div>
+
+                <!-- Tip 2 -->
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-moche-dorado/20 hover:border-moche-dorado/50 transition-all">
+                    <div class="w-14 h-14 rounded-2xl bg-moche-terracota/30 text-moche-dorado flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-moche-dorado mb-3">Gastronomía Imperdible</h3>
+                    <p class="text-sm text-moche-crema/80 leading-relaxed">
+                        No puedes irte sin probar el tradicional Ceviche Norteño de Huanchaco, el Seco de Cabrito a la Norteña, el Shambar (los lunes) y la refrescante chicha de jora.
+                    </p>
+                </div>
+
+                <!-- Tip 3 -->
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-moche-dorado/20 hover:border-moche-dorado/50 transition-all">
+                    <div class="w-14 h-14 rounded-2xl bg-moche-terracota/30 text-moche-dorado flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-moche-dorado mb-3">Mejor Época de Visita</h3>
+                    <p class="text-sm text-moche-crema/80 leading-relaxed">
+                        Trujillo se puede visitar todo el año. Sin embargo, los meses de primavera y verano (octubre a marzo) coinciden con festivales clave como el Festival de la Marinera o el Festival de la Primavera.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Call to Action Banner -->
+            <div class="mt-16 bg-gradient-to-r from-moche-terracota to-moche-ocre p-8 sm:p-12 rounded-3xl text-center shadow-2xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="font-cinzel text-2xl sm:text-4xl font-black text-white mb-4">¡Anímate a Descubrir la Magia del Norte Peruano!</h3>
+                    <p class="text-white/90 max-w-2xl mx-auto mb-8">Un destino fascinante donde la historia prehispánica, la cálida brisa marina y la gastronomía se unen para crear recuerdos inolvidables.</p>
+                    <a href="https://www.peru.travel" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-4 bg-moche-oscuro text-moche-dorado font-bold rounded-full hover:bg-white hover:text-moche-oscuro transition-all shadow-lg">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Planifica tu Ruta a Trujillo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios / Conclusión Académica -->
+    <section id="testimonios" class="py-20 bg-moche-crema moche-pattern">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-moche-terracota font-bold uppercase tracking-wider text-sm">Reflexión de Estudio</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-extrabold text-moche-oscuro mt-2">Conclusiones de la Experiencia</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Card Testimonio 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl border border-moche-adobe/20 relative">
+                    <i class="fa-solid fa-quote-left text-4xl text-moche-dorado/30 absolute top-6 right-6"></i>
+                    <p class="text-gray-700 italic mb-6 leading-relaxed">
+                        "Comprender que la Huaca del Sol aún oculta grandes misterios debido al trabajo arqueológico pendiente nos enseñó el inmenso respeto que debemos tener por la conservación patrimonial. Y admirar los colores vivos de la Huaca de la Luna fue sencillamente impactante."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-moche-terracota text-white font-bold flex items-center justify-center font-cinzel">
+                            VE
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-moche-oscuro">Equipo de Investigación</h4>
+                            <p class="text-xs text-gray-500">Estudiantes del Viaje de Campo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Testimonio 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl border border-moche-adobe/20 relative">
+                    <i class="fa-solid fa-quote-left text-4xl text-moche-dorado/30 absolute top-6 right-6"></i>
+                    <p class="text-gray-700 italic mb-6 leading-relaxed">
+                        "La diversidad de la ruta fue genial: pasar de la solemnidad ancestral en Chan Chan al viento fresco del mar en Huanchaco, y terminar compartiendo impresiones en el Mall Aventura de la ciudad. Trujillo lo tiene todo."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-chimu-azul text-white font-bold flex items-center justify-center font-cinzel">
+                            TC
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-moche-oscuro">Delegación de Estudios</h4>
+                            <p class="text-xs text-gray-500">Ruta Cultural 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-moche-oscuro text-white border-t border-moche-dorado/20 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-moche-dorado flex items-center justify-center text-moche-oscuro text-xl font-bold font-cinzel">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                        <span class="font-cinzel text-2xl font-extrabold text-moche-dorado">TRUJILLO CULTURAL</span>
+                    </div>
+                    <p class="text-moche-crema/70 text-sm max-w-md leading-relaxed">
+                        Proyecto web conmemorativo del Viaje de Estudios a Trujillo, La Libertad, Perú. Preservando y difundiendo la riqueza arqueológica Moche y Chimú.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-cinzel text-moche-dorado font-bold mb-4">Secciones</h4>
+                    <ul class="space-y-2 text-sm text-moche-crema/80">
+                        <li><a href="#inicio" class="hover:text-moche-dorado transition-colors">Inicio</a></li>
+                        <li><a href="#sobre-viaje" class="hover:text-moche-dorado transition-colors">El Viaje de Estudios</a></li>
+                        <li><a href="#destinos" class="hover:text-moche-dorado transition-colors">Lugares Visitados</a></li>
+                        <li><a href="#guia" class="hover:text-moche-dorado transition-colors">Guía del Viajero</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-cinzel text-moche-dorado font-bold mb-4">Síguenos</h4>
+                    <div class="flex space-x-4 text-xl">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-moche-crema hover:bg-moche-terracota hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-moche-crema hover:bg-moche-terracota hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-moche-crema hover:bg-moche-terracota hover:text-white transition-all"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-moche-crema/50">
+                <p>&copy; 2026 Viaje de Estudios a Trujillo. Todos los derechos reservados.</p>
+                <p class="mt-2 sm:mt-0">Diseñado con dedicación arqueológica e histórica.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS SECTION -->
+
+    <!-- Modal 1: Huacas del Sol y la Luna -->
+    <div id="modal-huacas" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col">
+            <button onclick="closeModal('modal-huacas')" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white hover:bg-moche-terracota flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="h-64 relative">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Huacas">
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black to-transparent p-6">
+                    <h3 class="font-cinzel text-2xl font-bold text-white">Santuario Moche: Huacas del Sol y de la Luna</h3>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4">
+                <div class="bg-amber-100 border-l-4 border-amber-600 p-4 rounded-r-lg text-amber-900 text-sm">
+                    <h4 class="font-bold flex items-center gap-2"><i class="fa-solid fa-circle-info text-amber-700"></i> ¿Por qué no pudimos observar la Huaca del Sol?</h4>
+                    <p class="mt-1">
+                        La <strong>Huaca del Sol</strong> es la estructura de adobe más grande de Sudamérica (más de 140 millones de adobes). Actualmente, los arqueólogos mantienen restricciones de acceso directo debido a que aún no se ha desenterrado por completo y se llevan a cabo complejos procesos de excavación, conservación y estabilización para evitar el deterioro de las capas subyacentes.
+                    </p>
+                </div>
+                <h4 class="font-cinzel font-bold text-lg text-moche-oscuro">La Experiencia en la Huaca de la Luna</h4>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    A diferencia del Sol, la <strong>Huaca de la Luna</strong> ha sido cuidadosamente abierta al público revelando un templo ceremonial escalonado. Observamos de cerca los frisos en relieve con pigmentos minerales originales (rojo, amarillo, blanco, negro) con la imponente figura de <em>Ai Apaec</em> y representaciones de guerreros y prisioneros.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Museo Huacas de Moche -->
+    <div id="modal-museo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col">
+            <button onclick="closeModal('modal-museo')" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white hover:bg-moche-terracota flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="h-64 relative">
+                <img src="https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Museo Moche">
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black to-transparent p-6">
+                    <h3 class="font-cinzel text-2xl font-bold text-white">Museo de la Cultura Moche y Chimú</h3>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4">
+                <h4 class="font-cinzel font-bold text-lg text-moche-oscuro">Tesoros Cerámicos y Orfebrería</h4>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    Ubicado al pie de los monumentos arqueológicos, el museo exhibe una colección excepcional de la iconografía Moche y objetos transicionales Chimú. Admiramos los famosos "Huacos Retrato", que reflejan con increíble realismo las emociones e identidades de sus líderes y sacerdotes.
+                </p>
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                    <div class="p-3 bg-moche-crema rounded-xl text-center border border-moche-adobe/30">
+                        <i class="fa-solid fa-jar text-moche-terracota text-xl mb-1"></i>
+                        <p class="text-xs font-bold text-moche-oscuro">Huacos Retrato</p>
+                    </div>
+                    <div class="p-3 bg-moche-crema rounded-xl text-center border border-moche-adobe/30">
+                        <i class="fa-solid fa-gem text-moche-ocre text-xl mb-1"></i>
+                        <p class="text-xs font-bold text-moche-oscuro">Orfebrería en Oro y Cobre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Chan Chan -->
+    <div id="modal-chanchan" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col">
+            <button onclick="closeModal('modal-chanchan')" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white hover:bg-moche-terracota flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="h-64 relative">
+                <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Chan Chan">
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black to-transparent p-6">
+                    <h3 class="font-cinzel text-2xl font-bold text-white">Ciudadela de Chan Chan (Cultura Chimú)</h3>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4">
+                <h4 class="font-cinzel font-bold text-lg text-moche-oscuro">La Capital de Barro de América</h4>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    Chan Chan abarca más de 20 km² de extensión. Durante el recorrido por el Conjunto Amurallado Nik An (ex Palacio Tschudi), contemplamos la plaza ceremonial, los huachiques (estanques ceremoniales) y los célebres bajorrelieves con diseños geométricos que emulan las olas del mar, la red de pesca y la fauna marina.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Huanchaco -->
+    <div id="modal-huanchaco" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col">
+            <button onclick="closeModal('modal-huanchaco')" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white hover:bg-moche-terracota flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="h-64 relative">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Huanchaco">
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black to-transparent p-6">
+                    <h3 class="font-cinzel text-2xl font-bold text-white">Huanchaco y los Caballitos de Totora</h3>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4">
+                <h4 class="font-cinzel font-bold text-lg text-moche-oscuro">Tradición Pesquera Prehispánica</h4>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    Huanchaco nos cautivó con su muelle tradicional y la presencia de los pescadores artesanales adaptando la totora milenaria. Es considerado la cuna del surf ancestral del mundo. Cerramos la jornada disfrutando un auténtico ceviche frente al atardecer marino.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5: Mall Aventura Trujillo (MOL) -->
+    <div id="modal-mol" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col">
+            <button onclick="closeModal('modal-mol')" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white hover:bg-moche-terracota flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="h-64 relative">
+                <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Mall Aventura">
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black to-transparent p-6">
+                    <h3 class="font-cinzel text-2xl font-bold text-white">Mall Aventura Trujillo (MOL)</h3>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4">
+                <h4 class="font-cinzel font-bold text-lg text-moche-oscuro">Punto de Encuentro y Convivencia</h4>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    Como parte de nuestro itinerario de integración y descanso, visitamos el reconocido centro comercial Mall Aventura Trujillo. Disfrutamos de momentos de convivencia del grupo, opciones de gastronomía variada y compra de recuerdos en un espacio moderno y cómodo.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript Logics -->
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Filter cards function
+        function filterPlaces(category) {
+            const cards = document.querySelectorAll('.place-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-moche-oscuro', 'text-white');
+                    btn.classList.remove('bg-moche-crema', 'text-moche-oscuro');
+                } else {
+                    btn.classList.remove('bg-moche-oscuro', 'text-white');
+                    btn.classList.add('bg-moche-crema', 'text-moche-oscuro');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'todos' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal triggers
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside the content block
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('[id^="modal-"]');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        };
+    </script>
+</body>
+</html>
